@@ -64,15 +64,18 @@ function addText(a){
 
     }
     else if(a == 'CE'){
-        currentText = currentText.slice(0,currentText.length-1);
-
-        if(currentText == 0)
+              
+        if(displayText.textContent.length == 1){
+        clearDisplay();
         return;
-
-        if(displayText.textContent[displayText.textContent.length-1] == ' ')
-            displayText.textContent = displayText.textContent.slice(0, displayText.textContent.length -3 );
+        }
         else
-            displayText.textContent = displayText.textContent.slice(0, displayText.textContent.length -1 );
+            if(displayText.textContent[displayText.textContent.length-1] == ' ')
+                displayText.textContent = displayText.textContent.slice(0, displayText.textContent.length -3 );
+            else
+                displayText.textContent = displayText.textContent.slice(0, displayText.textContent.length -1 );
+        
+        currentText = currentText.slice(0,currentText.length-1);
     }else{
        
     if(['x','÷','+','-'].includes(a))
