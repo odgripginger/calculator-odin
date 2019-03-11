@@ -17,7 +17,7 @@ function product(a,b){
 }
 
 function division(a,b){
-    return (b == 0)? 'Error':Math.round(a*10000000000000/b)/10000000000000;
+    return (b == 0)? 'Error':Math.round(a*1000000000/b)/1000000000;
 }
 
 function percentage(a){
@@ -56,12 +56,19 @@ function operate(str){
 }
 
 function addText(a){
+
+    if(a == 'Clear') {
+    clearDisplay();
+    return;
+    }
+
     if(a == '='){
     currentText = displayText.textContent = operate(currentText);
 
     if(displayText.textContent == 'NaN')
-    displayText.textContent = 'Not Defined';
+    displayText.textContent = 'Not defined';
 
+    return;
     }
     else if(a == 'CE'){
               
@@ -76,22 +83,20 @@ function addText(a){
                 displayText.textContent = displayText.textContent.slice(0, displayText.textContent.length -1 );
         
         currentText = currentText.slice(0,currentText.length-1);
-    }else{
-       
-    if(['x','÷','+','-'].includes(a))
-        displayText.textContent += ' ' + a + ' ';
-    else if(currentText == '0')
-            displayText.textContent = a;
-        else
-            displayText.textContent += a;
+    
+        return;
+    }else   if(['x','÷','+','-'].includes(a))
+            displayText.textContent += ' ' + a + ' ';
+                else if(currentText == '0')
+                    displayText.textContent = a;
+                    else
+                    displayText.textContent += a;
     
     if(displayText.textContent != '0')
     currentText += a;
-    
-    }
+    else
+    currentText = '0';
 
-    if(a == 'Clear')
-    clearDisplay();
 } 
 
 function entry (t){
@@ -108,5 +113,25 @@ buttons.forEach( button => {
     button.addEventListener('click', (e) => {
         entry(e.target.textContent);
     });
+
+});
+
+window.addEventListener('keydown', (e) => {
+
+        if(['+','-','=','%','1','2','3','4','5','6','7','8','9','0','.'].includes(e.key))
+        entry(e.key);
+
+        switch(e.key){
+            case '*': entry('x');
+            break;
+
+            case '/': entry('÷');
+            break;
+
+            case 'Enter': entry('=');
+            break;
+
+            case 'Escape': entry('Clear');
+        }
 });
 
