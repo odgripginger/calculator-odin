@@ -62,8 +62,8 @@ function addText(a){
     return;
     }
 
-    if(a == '='){
-    currentText = displayText.textContent = operate(currentText);
+    if(a == '='){ console.log(currentText + 'top');
+    currentText = displayText.textContent = '' + operate(currentText);
 
     if(displayText.textContent == 'NaN')
     displayText.textContent = 'Not defined';
@@ -81,6 +81,7 @@ function addText(a){
                 displayText.textContent = displayText.textContent.slice(0, displayText.textContent.length -3 );
             else
                 displayText.textContent = displayText.textContent.slice(0, displayText.textContent.length -1 );
+        
         
         currentText = currentText.slice(0,currentText.length-1);
     
