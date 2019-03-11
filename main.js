@@ -117,7 +117,7 @@ buttons.forEach( button => {
 });
 
 window.addEventListener('keydown', (e) => {
-
+      
         if(['+','-','=','%','1','2','3','4','5','6','7','8','9','0','.'].includes(e.key))
         entry(e.key);
 
@@ -132,6 +132,9 @@ window.addEventListener('keydown', (e) => {
             break;
 
             case 'Escape': entry('Clear');
+            break;
+
+            case 'Backspace': entry('CE');
         }
 });
 
