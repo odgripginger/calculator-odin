@@ -94,8 +94,6 @@ function addText(a){
     
     if(displayText.textContent != '0')
     currentText += a;
-    else
-    currentText = '0';
 
 } 
 
