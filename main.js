@@ -52,7 +52,7 @@ function operate(str){
                     str = product( operate(str.slice(0,i)) , operate(str.slice(i+1)) );
                  }}}}
     if((1*str) != NaN)
-    return division(str,1);
+    return '' + division(str,1);
 }
 
 function addText(a){
