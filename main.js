@@ -33,7 +33,7 @@ function operate(str){
     let i;
     i=str.indexOf('%');
     if( i >=0 )
-    str = percentage( operate(str.slice(0,i))) + str.slice(i+1);
+    str = percentage( operate(str.slice(0,i))) + operate(str.slice(i+1));
     else {
         i=str.indexOf('+');
         if( i >=0 )
