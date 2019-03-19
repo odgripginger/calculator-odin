@@ -33,7 +33,11 @@ function operate(str){
     let i;
     i=str.indexOf('-');
     if( i >=0 )
+<<<<<<< HEAD
     str = diff( operate(str.slice(0,i)) , operate(str.slice(i+1)) );
+=======
+    str = percentage( operate(str.slice(0,i))) + operate(str.slice(i+1));
+>>>>>>> 231bf8d06ac39b3036a21306176a7735fd643854
     else {
         i=str.indexOf('+');
         if( i >=0 )
