@@ -110,6 +110,7 @@ function entry (t){
 
 buttons.forEach( button => {
     button.addEventListener('click', (e) => {
+        if(e.screenX != 0)
         entry(e.target.textContent);
     });
 
