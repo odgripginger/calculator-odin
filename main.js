@@ -5,7 +5,7 @@ let currentText = '0';
 let operated = false;
 
 function add(a,b){
-    return a+b;
+    return a- (-b);
 }
 
 function diff(a,b){
@@ -17,7 +17,7 @@ function product(a,b){
 }
 
 function division(a,b){
-    return (b == 0)? 'Error':Math.round(a*1000000000/b)/1000000000;
+    return (b == 0)? 'Error':Math.round(a*10000000/b)/10000000;
 }
 
 function percentage(a){
@@ -31,17 +31,17 @@ function clearDisplay(){
 
 function operate(str){
     let i;
-    i=str.indexOf('%');
+    i=str.indexOf('-');
     if( i >=0 )
-    str = percentage( operate(str.slice(0,i))) + str.slice(i+1);
+    str = diff( operate(str.slice(0,i)) , operate(str.slice(i+1)) );
     else {
         i=str.indexOf('+');
         if( i >=0 )
         str = add( operate(str.slice(0,i)) , operate(str.slice(i+1)) );
         else {
-            i=str.indexOf('-');
+            i=str.indexOf('%');
             if( i >=0 )
-            str = diff( operate(str.slice(0,i)) , operate(str.slice(i+1)) );
+            str = operate (percentage( operate(str.slice(0,i)) ) + str.slice(i+1));
             else {
                 i=str.indexOf('÷');
                 if( i >=0 )
@@ -52,7 +52,7 @@ function operate(str){
                     str = product( operate(str.slice(0,i)) , operate(str.slice(i+1)) );
                  }}}}
     if((1*str) != NaN)
-    return division(str,1);
+    return '' + division(str,1);
 }
 
 function addText(a){
@@ -62,7 +62,7 @@ function addText(a){
     return;
     }
 
-    if(a == '='){ console.log(currentText + 'top');
+    if(a == '='){ 
     currentText = displayText.textContent = '' + operate(currentText);
 
     if(displayText.textContent == 'NaN')
@@ -119,6 +119,7 @@ window.addEventListener('keydown', (e) => {
       
         if(['+','-','=','%','1','2','3','4','5','6','7','8','9','0','.'].includes(e.key))
         entry(e.key);
+        console.log(e);
 
         switch(e.key){
             case '*': entry('x');
