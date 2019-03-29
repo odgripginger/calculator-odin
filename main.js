@@ -61,7 +61,7 @@ function addText(a){
     clearDisplay();
     return;
     }
-    
+
     if(displayText.textContent == "Not defined")
     clearDisplay();
 
@@ -101,11 +101,19 @@ function addText(a){
 } 
 
 function entry (t){
-    if(['x','÷','+','-','='].includes(t)  && ['x','÷','+','-'].includes(currentText[currentText.length -1]) )
+    let checkIndex = currentText.length -1;
+    if(['x','÷','+','-','='].includes(t)  && ['x','÷','+','-'].includes(currentText[checkIndex]) )
     return;
 
-    if(t == '%' && ['x','÷','+','-'].includes(currentText[currentText.length -1]))
+    if(t == '%' && ['x','÷','+','-'].includes(currentText[checkIndex]))
     addText('CE');
+
+    while(['x','÷','+','-','.'].includes(currentText[checkIndex]) == false && checkIndex > 0) {
+        checkIndex--;
+    }
+    console.log(currentText);
+    if (currentText[checkIndex] == '.' && t == '.')
+    return;
 
     addText(t);
 }
