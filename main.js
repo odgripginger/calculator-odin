@@ -66,7 +66,7 @@ function addText(a){
     clearDisplay();
 
     if(a == '='){ 
-    currentText = displayText.textContent = Math.round(operate(currentText)*10000000000) /10000000000;
+    currentText = displayText.textContent = Math.round(operate(currentText)*1e11) /1e11;
 
     if(displayText.textContent == 'NaN')
     displayText.textContent = 'Not defined';
