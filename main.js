@@ -17,7 +17,7 @@ function product(a,b){
 }
 
 function division(a,b){
-    return (b == 0)? 'Error':Math.round(a*10000000/b)/10000000;
+    return a/b;
 }
 
 function percentage(a){
@@ -52,7 +52,7 @@ function operate(str){
                     str = product( operate(str.slice(0,i)) , operate(str.slice(i+1)) );
                  }}}}
     if((1*str) != NaN)
-    return '' + division(str,1);
+    return '' + str;
 }
 
 function addText(a){
@@ -62,11 +62,11 @@ function addText(a){
     return;
     }
 
-    if(displayText.textContent == "Not defined")
+    if(displayText.textContent == "Not defined" || displayText.textContent == "Infinity")
     clearDisplay();
 
     if(a == '='){ 
-    currentText = displayText.textContent = '' + operate(currentText);
+    currentText = displayText.textContent = Math.round(operate(currentText)*10000000000) /10000000000;
 
     if(displayText.textContent == 'NaN')
     displayText.textContent = 'Not defined';
